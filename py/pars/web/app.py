@@ -1,16 +1,12 @@
 from pyramid.config import Configurator
 from pyramid.view import view_config
-from sqlalchemy import create_engine, orm
-
 from crudpile.view import Crudpile
 
 from .. import models as m
-
-engine = create_engine('postgresql+psycopg2://locahost/pars')
-Session = orm.sessionmaker(bind=engine)
+from ..sqla import Session
 
 
-@view_config(route_name='cruddie')
+@view_config(route_name='root')
 class Root(Crudpile):
 
     model_names = {
