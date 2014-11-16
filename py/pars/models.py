@@ -30,3 +30,6 @@ class Par(Base):
                          nullable=False)
     slug = sa.Column(sa.String(204))
     in_buffer = sa.Column(sa.Boolean, default=True)
+
+    left = sa.orm.relationship(ParImage, foreign_keys=[left_id])
+    right = sa.orm.relationship(ParImage, foreign_keys=[right_id])
