@@ -1,0 +1,32 @@
+﻿body, .layout {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: serif;
+}
+
+.layout {
+    margin: 20px;
+    width: auto;
+}
+
+.par {
+    width: 405px;
+    margin: 0 auto;
+}
+
+.hidden span {
+    background: black;
+}
+
+.hidden img {
+    visibility: hidden;
+}
+
+.par div {
+    display: inline-block;
+}
+
+div.hidden {
+    background: black;
+}

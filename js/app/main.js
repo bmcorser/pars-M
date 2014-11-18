@@ -1,40 +1,28 @@
 ﻿requirejs.config({
-    paths: {
-        'text': '../lib/require/text',
-        'durandal':'../lib/durandal/js',
-        'plugins' : '../lib/durandal/js/plugins',
-        'transitions' : '../lib/durandal/js/transitions',
-        'knockout': '../lib/knockout/knockout-2.3.0',
-        'bootstrap': '../lib/bootstrap/js/bootstrap',
-        'jquery': '../lib/jquery/jquery-1.9.1'
-    },
-    shim: {
-        'bootstrap': {
-            deps: ['jquery'],
-            exports: 'jQuery'
-       }
-    }
+  paths: {
+    'text': '../lib/require/text',
+    'durandal':'../lib/durandal/js',
+    'plugins' : '../lib/durandal/js/plugins',
+    'knockout': '../lib/knockout/knockout-2.3.0',
+    'bootstrap': '../lib/bootstrap/js/bootstrap',
+    'jquery': '../lib/jquery/jquery-1.9.1'
+  }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator'],  function (system, app, viewLocator) {
-    //>>excludeStart("build", true);
-    system.debug(true);
-    //>>excludeEnd("build");
+define(function (require) {
+  var system = require('durandal/system');
 
-    app.title = 'Durandal Starter Kit';
+  //>>excludeStart("build", true);
+  system.debug(true);
+  //>>excludeEnd("build");
 
-    app.configurePlugins({
-        router:true,
-        dialog: true,
-        widget: true
-    });
-
-    app.start().then(function() {
-        //Replace 'viewmodels' in the moduleId with 'views' to locate the view.
-        //Look for partial views in a 'views' folder in the root.
-        viewLocator.useConvention();
-
-        //Show the app by setting the root view model for our application with a transition.
-        app.setRoot('viewmodels/shell', 'entrance');
-    });
+  var app = require('durandal/app');
+  app.settings = {backend: 'http://localhost:6543/'};
+  var viewLocator = require('durandal/viewLocator');
+  app.title = 'Pars, 2010';
+  app.configurePlugins({router: true});
+  app.start().then(function() {
+    viewLocator.useConvention();
+    app.setRoot('viewmodels/shell');
+  });
 });
