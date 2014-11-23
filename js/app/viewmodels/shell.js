@@ -14,7 +14,12 @@
           moduleId: 'viewmodels/laters'
         },
         {
-          route: ':number',
+          route: 'home',
+          title: 'Par',
+          moduleId: 'viewmodels/laters'
+        },
+        {
+          route: 'par/:number',
           title: 'Par',
           moduleId: 'viewmodels/par'
         }

@@ -1,5 +1,9 @@
 <div>
-<a href='/'>x</a> <a data-bind="attr: {href: olderHash}">older</a>
+    <a href='/'>x</a>
+    <span data-bind="visible: !isNavigating()">
+        <a data-bind="attr: {href: olderHash}">older</a>
+    </span>
+    <span data-bind="visible: isNavigating">loading ...</span>
 </div>
 <div class="par">
     <h1 data-bind="text: title"></h1>
