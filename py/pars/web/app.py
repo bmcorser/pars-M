@@ -39,7 +39,7 @@ def cors_callback(event):
 
 
 config = Configurator()
-config.add_static_view(name='pars', path='/Users/ben/work/originalenclosure-backup/media/pars/')
+# config.add_static_view(name='pars', path='/Users/ben/work/originalenclosure-backup/media/pars/')
 config.add_route('root', '/')
 config.add_renderer('sqlam', 'crudpile.renderer.sqlam')
 config.add_request_method(lambda _: Session(),

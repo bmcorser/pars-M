@@ -6,17 +6,17 @@ define(function (require) {
   var pad = function pad (number) {
     return ('0000' + number).slice(-4);
   };
-  var ParViewModel = function (parJS) {
+  var Par = function (parJS) {
     var mapping = {
       'ignore': ['left_id', 'right_id', 'id', 'slug'],
       'left': {
         create: function (options) {
-          return ko.observable(backendUrl + options.data.image);
+          return ko.observable(backendUrl + options.data.image());
         }
       },
       'right': {
         create: function (options) {
-          return ko.observable(backendUrl + options.data.image);
+          return ko.observable(backendUrl + options.data.image());
         }
       },
     };
@@ -25,11 +25,10 @@ define(function (require) {
       return '#par/' + pad(this.number() - 1);
     }, this);
     this.fullTitle = ko.computed(function () {
-      return this.number + ' ' + this.title;
+      return this.number() + ' ' + this.title();
     }, this);
   };
   return {
-    pad: pad,
-    ParViewModel: ParViewModel
+    Par: Par
   };
 });

@@ -7,8 +7,10 @@ define(function (require) {
     var binding = this;
     this.activate = function (number) {
       this.isNavigating = router.isNavigating;
-      var par = cache.get(number);
-      return ko.utils.extend(this, new models.ParViewModel(par));
+      return cache.get(number).then(function (parJS) {
+        var par = new models.Par(parJS);
+        return ko.utils.extend(binding, par);
+      });
     };
   };
 });

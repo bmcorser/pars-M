@@ -5,9 +5,12 @@ define(function (require) {
   var models = require('models');
   return {
     activate: function () {
+      var binding = this;
       this.isNavigating = router.isNavigating;
-      var par = new models.ParViewModel(cache.latest());
-      return ko.utils.extend(this, par);
+      return cache.latest().then(function (parJS) {
+        par = new models.Par(parJS);
+        return ko.utils.extend(binding, par);
+      });
     }
   };
 });

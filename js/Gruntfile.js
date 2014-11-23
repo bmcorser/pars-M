@@ -14,13 +14,15 @@ module.exports = function( grunt ) {
     var requireConfig = {
         baseUrl: 'app/',
         paths: {
-            'jquery': '../lib/jquery/jquery-1.9.1',
+            'lodash': '../lib/lodash.min',
+            'q': '../lib/q',
             'knockout': '../lib/knockout/knockout-2.3.0.debug',
             'text': '../lib/require/text',
+            'knockout-mapping': '../lib/knockout-mapping/build/output/knockout.mapping-latest',
+            'jquery': '../lib/jquery/jquery-1.9.1',
             'durandal': '../lib/durandal/js',
             'plugins': '../lib/durandal/js/plugins',
             'transitions': '../lib/durandal/js/transitions',
-            'knockout-mapping': '../lib/knockout-mapping',
             'models': 'models'
         }
     };
