@@ -1,0 +1,12 @@
+% for par in pars:
+% if not par.hidden:
+<h1>${par.number} ${par.title}</h1>
+% if par.left:
+<img src="http://localhost:7654/${par.left.image}" width="200" />
+% endif
+% if par.right:
+<img src="http://localhost:7654/${par.right.image}" width="200" />
+% endif
+% endif
+<h1>&nbsp;</h1>
+% endfor

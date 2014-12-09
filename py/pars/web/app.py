@@ -1,10 +1,13 @@
 from pyramid.config import Configurator
 from pyramid.events import NewRequest
+from pyramid.response import Response
 from pyramid.httpexceptions import status_map
 from pyramid.view import view_config
+from mako.template import Template
 from crudpile.view import Crudpile
 
-from .. import models as m
+from .. import models
+from ..book.collection import M
 from ..sqla import Session
 
 
@@ -12,8 +15,8 @@ from ..sqla import Session
 class Root(Crudpile):
 
     model_names = {
-        'par': m.Par,
-        'parimage': m.ParImage,
+        'par': models.Par,
+        'parimage': models.ParImage,
     }
 
     def __init__(self, request):
@@ -24,6 +27,20 @@ class Root(Crudpile):
 @view_config(route_name='root', request_method='OPTIONS')
 def preflight(_):
     return status_map[204]()
+
+
+@view_config(route_name='all')
+def all_view(request):
+    template = Template(filename='pars/web/templates/all.html')
+    numbers_int = M['collection'][0]['series'][0]['numbers']
+    numbers = ["0000{0}".format(x)[-4:] for x in numbers_int]
+    pars = (request.sqlas
+                   .query(models.Par)
+                   .order_by(models.Par.number)
+                   .filter(models.Par.number.in_(numbers)))
+    result = template.render(pars=pars)
+    response = Response(result)
+    return response
 
 
 def cors_callback(event):
@@ -39,8 +56,8 @@ def cors_callback(event):
 
 
 config = Configurator()
-# config.add_static_view(name='pars', path='/Users/ben/work/originalenclosure-backup/media/pars/')
 config.add_route('root', '/')
+config.add_route('all', '/all')
 config.add_renderer('sqlam', 'crudpile.renderer.sqlam')
 config.add_request_method(lambda _: Session(),
                           name='sqlas',
