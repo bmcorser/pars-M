@@ -1,0 +1,30 @@
+% for par in pars[:4]:
+\section{}
+\begin{itemize}[leftmargin=*]
+    \item[] {\tiny \url{${par.left.source.replace('%', '\%')}}}
+    \item[] {\tiny \url{${par.right.source.replace('%', '\%')}}}
+\end{itemize}
+
+\newpage
+
+\textbf{{\Huge ${par.number} ${par.title}}}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b][][b]{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/Users/ben/work/originalenclosure-backup/media/${par.left.image}}
+        \label{fig:${par.slug}-left}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[b][][b]{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{/Users/ben/work/originalenclosure-backup/media/${par.right.image}}
+        \label{fig:${par.slug}-right}
+    \end{minipage}%
+    \label{fig:${par.slug}-right}
+\end{figure}
+${par.created.strftime('%A %Y')}
+\newpage
+% endfor
+

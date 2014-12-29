@@ -1,0 +1,24 @@
+\documentclass{book}
+\usepackage{url,graphicx,float,enumitem,parskip}
+\usepackage{grffile}
+\usepackage[utf8]{inputenc}
+\title{Pars M}
+\author{B M Corser}
+\date{2015}
+\begin{document}
+
+\pagestyle{myheadings}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername\ \thechapter.\ #1}}{}}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
+\newpage
+
+% for series in serieses:
+\chapter{${series['title']}}
+\input{${series['title']}}
+% endfor
+\end{document}
