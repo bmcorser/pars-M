@@ -32,11 +32,12 @@ def preflight(_):
 @view_config(route_name='all')
 def all_view(request):
     template = Template(filename='pars/web/templates/all.html')
-    numbers_int = M['collection'][0]['series'][0]['numbers']
+    numbers_int = M['collection'][0]['series'][2]['numbers']
     numbers = ["0000{0}".format(x)[-4:] for x in numbers_int]
     pars = (request.sqlas
                    .query(models.Par)
                    .order_by(models.Par.number)
+                   # .all())
                    .filter(models.Par.number.in_(numbers)))
     result = template.render(pars=pars)
     response = Response(result)
